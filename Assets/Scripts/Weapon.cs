@@ -5,13 +5,20 @@ using UnityEngine.Networking;
 using PixelPunch.Controller;
 
 namespace PixelPunch.Weapons {
-	public class Weapon : MonoBehaviour {
+	public class Weapon : NetworkBehaviour {
 
 		public GameObject bulletPrefab;
 		public Transform bulletSpawnPos;
-		protected int damage;
-		protected float bulletSpeed;
+		protected int damage = 10;
+		protected float bulletSpeed = 6.0f;
 
+		void Start(){
+			//bulletSpawnPos = this.gameObject.transform;
+		}
+		void Update(){
+			Debug.Log (bulletSpawnPos);
+		}
+			
 		public virtual void Shoot(){
 			var bullet = (GameObject)Instantiate (bulletPrefab, bulletSpawnPos.position, bulletSpawnPos.rotation);
 

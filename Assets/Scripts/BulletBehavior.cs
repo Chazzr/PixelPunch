@@ -4,17 +4,11 @@ using UnityEngine;
 
 public class BulletBehavior : MonoBehaviour {
 
-	private Rigidbody bulletBody;
-
-	// Use this for initialization
-	void Start () {
-		bulletBody = this.gameObject.GetComponent<Rigidbody>();
-	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		Destroy(this.gameObject, 2.0f);
+		Destroy(this.gameObject, 10.0f);
 	}
 
 	void OnCollisionEnter(Collision collision){

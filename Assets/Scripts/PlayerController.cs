@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using PixelPunch.Weapons;
 
 namespace PixelPunch.Controller {
 	public class PlayerController : NetworkBehaviour {
@@ -9,21 +10,27 @@ namespace PixelPunch.Controller {
 		public Transform playerTransform;
 		public Transform jumpTransform;
 		public Rigidbody myRigidbody;
+		public Transform weaponJoint;
 		public Transform weaponSocket;
 		public GameObject objectPrefab;
 		public Transform objectSpawn;
-		public Transform bulletSpawn;
-		public GameObject bulletPrefab;
+		public GameObject startingWeapon;
+		public Weapon weaponControl;
+
 		public float throwSpeed;
 		public float moveSpeed;
 		public float jumpHeight;
-		public float bulletSpeed;
+		//public float bulletSpeed;
 
+		private GameObject equippedWeapon;
 		private float distanceToGround = 0.2f;
 		private Vector3 worldPos;
 		private Vector2 mousePos;
 
 		void Start () { 
+			equippedWeapon = startingWeapon;
+			Instantiate (equippedWeapon, weaponSocket);
+			weaponControl = equippedWeapon.GetComponent<Weapon> ();
 		}
 			
 		private bool bIsGrounded(){
@@ -86,13 +93,15 @@ namespace PixelPunch.Controller {
 		[Command]
 		void CmdFire(){
 			Debug.Log ("Firing Weapon!");
+
+			weaponControl.Shoot ();
 			//Vector3 bulletDir = new Vector3();
 
-			var bullet = (GameObject)Instantiate (bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+			//var bullet = (GameObject)Instantiate (bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
 
-			bullet.GetComponent<Rigidbody> ().velocity = bulletSpawn.transform.right * bulletSpeed;
+			//bullet.GetComponent<Rigidbody> ().velocity = bulletSpawn.transform.right * bulletSpeed;
 
-			NetworkServer.Spawn (bullet);
+			//NetworkServer.Spawn (bullet);
 			//Destroy (bullet, 2.0f);
 		}
 			
@@ -102,7 +111,7 @@ namespace PixelPunch.Controller {
 
 			mousePosition = c.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10));
 
-			weaponSocket.rotation = Quaternion.Euler (0, 0, Mathf.Atan2 (mousePosition.y, mousePosition.x) * Mathf.Rad2Deg);
+			weaponJoint.rotation = Quaternion.Euler (0, 0, Mathf.Atan2 (mousePosition.y, mousePosition.x) * Mathf.Rad2Deg);
 		}
 
 		void ThrowGrenade(){
