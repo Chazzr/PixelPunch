@@ -26,19 +26,14 @@ namespace PixelPunch.Weapons{
 
 			Vector3 rayOrigin = bulletSpawnPos.position;
 
-			Debug.DrawRay (rayOrigin, bulletSpawnPos.right * weaponRange, Color.green);
-
-		//	laserLine.SetPosition (0, rayOrigin);
+			//Debug.DrawRay (rayOrigin, bulletSpawnPos.right * weaponRange, Color.green);
 
 			if (Physics.Raycast (rayOrigin, bulletSpawnPos.right, out hit, weaponRange)) {
-		//		laserLine.SetPosition (1, hit.point);
 				var health = hit.collider.GetComponent<PlayerHealth>();
 
 				if (health != null) {
 					health.TakeDamage (damage);
 				}
-		//	} else {
-		//		laserLine.SetPosition (1, bulletSpawnPos.right * weaponRange);
 			}
 
 		}
