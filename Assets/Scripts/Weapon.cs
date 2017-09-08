@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 using PixelPunch.Controller;
 
 namespace PixelPunch.Weapons {
-	public class Weapon : NetworkBehaviour {
+	public abstract class Weapon : NetworkBehaviour {
 
 		public GameObject bulletPrefab;
 		public Transform bulletSpawnPos;

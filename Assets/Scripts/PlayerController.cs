@@ -15,22 +15,20 @@ namespace PixelPunch.Controller {
 		public GameObject objectPrefab;
 		public Transform objectSpawn;
 		public GameObject startingWeapon;
-		public Weapon weaponControl;
 
 		public float throwSpeed;
 		public float moveSpeed;
 		public float jumpHeight;
-		//public float bulletSpeed;
 
-		private GameObject equippedWeapon;
+		public Weapon _weaponControl;
+		private GameObject _equippedWeapon;
 		private float distanceToGround = 0.2f;
 		private Vector3 worldPos;
 		private Vector2 mousePos;
 
 		void Start () { 
-			equippedWeapon = startingWeapon;
-			Instantiate (equippedWeapon, weaponSocket);
-			weaponControl = equippedWeapon.GetComponent<Weapon> ();
+			_equippedWeapon = Instantiate (startingWeapon, weaponSocket) as GameObject;
+			_weaponControl = _equippedWeapon.GetComponent<Weapon> ();
 		}
 			
 		private bool bIsGrounded(){
@@ -94,7 +92,7 @@ namespace PixelPunch.Controller {
 		void CmdFire(){
 			Debug.Log ("Firing Weapon!");
 
-			weaponControl.Shoot ();
+			_weaponControl.Shoot ();
 			//Vector3 bulletDir = new Vector3();
 
 			//var bullet = (GameObject)Instantiate (bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
