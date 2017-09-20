@@ -8,6 +8,8 @@ namespace PixelPunch.Weapons {
 	public class WeaponPistol : Weapon {
 
 		public float tracerSpeed = 6.0f;
+		public GameObject upperAim;
+		public GameObject lowerAim;
 
 		private float shotDuration = 0.07f;
 		private LineRenderer laserLine;
@@ -18,12 +20,15 @@ namespace PixelPunch.Weapons {
 			laserLine = GetComponent<LineRenderer> ();
 		}
 
+		void Update(){
+			
+		}
+
 		public override void Shoot(){
 			
 			Debug.Log("Shooting pistol!");
 
-			StartCoroutine (ShotEffect()
-			);
+			StartCoroutine (ShotEffect());
 
 			//This will cast a ray against colliders in layer 8 (i.e "Player" layer)
 			int layerMask = 1 << 8;  
@@ -65,9 +70,15 @@ namespace PixelPunch.Weapons {
 
 			Destroy (tracer, 0.5f);
 
+			CalculateRecoil ();
+
 			yield return shotDuration;
 
 			laserLine.enabled = false;
+		}
+
+		private void CalculateRecoil (){
+			
 		}
 	}
 }

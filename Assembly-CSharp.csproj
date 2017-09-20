@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{3E98568F-B434-4994-61BA-2DB5F0C58990}</ProjectGuid>
+    <ProjectGuid>{D91B97B0-29A9-FC1A-2A04-C8F0F4539DE7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -51,14 +51,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\AnimationManager.cs" />
      <Compile Include="Assets\Scripts\Billboard.cs" />
      <Compile Include="Assets\Scripts\BulletBehavior.cs" />
      <Compile Include="Assets\Scripts\DebugMousePosition.cs" />
      <Compile Include="Assets\Scripts\ExampleClass.cs" />
-     <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\PlayerBehavior.cs" />
      <Compile Include="Assets\Scripts\PlayerHealth.cs" />
      <Compile Include="Assets\Scripts\RaycastShootComplete.cs" />
+     <Compile Include="Assets\Scripts\ReticleBehavior.cs" />
+     <Compile Include="Assets\Scripts\UserInterfaceBehavior.cs" />
      <Compile Include="Assets\Scripts\Weapon.cs" />
+     <Compile Include="Assets\Scripts\WeaponPistol.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity2017-1/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
